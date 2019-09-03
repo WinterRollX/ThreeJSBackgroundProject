@@ -1,7 +1,8 @@
 import React, {Fragment,useState,useEffect} from 'react';
-import {Dropdown} from "semantic-ui-react";
+import {Dropdown, Grid, Button} from "semantic-ui-react";
 import './App.css';
 import DevidedDropDown from "./components/devidedDropdown";
+import { promises } from 'fs';
 
 
 function App() {
@@ -27,18 +28,37 @@ function App() {
       id:5,
     }]
   };
+
+  async function getDataFromServer() {
+    console.log("start query server");
+    let resultData = await new Promise((resovle,rejcet)=>{
+      setTimeout(()=>{
+        resovle({dummyData:"test data"});
+      },2000);
+    }).then((res)=>{
+      console.log("res = ",res);
+    }).catch(errorHandler);
+
+  }
+
+  function errorHandler(error) {
+    alert("Some thing goes wrong!");
+  }
   
   
   return (
     <Fragment>
-    <div>start of a test content</div>
-    <DevidedDropDown
-    placeholder='Select a introducor'
-    fluid
-    selection
-    masterData = {masterData}
-    onChange = {(e,{value})=>{console.log(value);}}
-  />
+      <div className = "app-container">
+        <div>start of a test content</div>
+        <Grid>
+          <Grid.Row centered columns={1}>
+            <Grid.Column>
+              <Button color="olive" inverted onClick = {getDataFromServer}>Click me to show the data</Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
+    
     </Fragment>
 
   );
