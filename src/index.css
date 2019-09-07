@@ -16,5 +16,13 @@ code {
   width:100vw;
   height: 100vh;
   color: white;
-  background-color: black;
+  background-image: radial-gradient(at 50% 100%, rgba(123, 22, 255, 0.75), rgb(15, 1, 94));;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+.table-segment {
+  
 }
